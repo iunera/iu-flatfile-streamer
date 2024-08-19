@@ -1,0 +1,24 @@
+{
+	"properties": [
+		{
+			"name": "resolveAndLoad.fixedDelay.in.milliseconds",
+			"type": "java.lang.String",
+			"description": "A description for 'resolveAndLoad.fixedDelay.in.milliseconds'"
+		},
+		{
+			"name": "fahrbar.countingdata.outputtopic",
+			"type": "java.lang.String",
+			"description": "A description for 'fahrbar.countingdata.outputtopic'"
+		},
+		{
+			"name": "fahrbar.countingdata.provider",
+			"type": "java.lang.String",
+			"description": "A description for 'fahrbar.countingdata.provider'"
+		},
+		{
+			"name": "fahrbar.countingdata.filenamepattern",
+			"type": "java.lang.String",
+			"description": "A description for 'fahrbar.countingdata.filenamepattern'"
+		}
+	]
+}

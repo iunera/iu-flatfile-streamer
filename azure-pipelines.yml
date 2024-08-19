@@ -1,0 +1,20 @@
+variables:
+  docker_image_tag: $(Build.BuildId)
+  parent_project_name: iu-publictransport
+  project_name: iu-flatfile-streamer
+  docker_image_name: iunera/$(project_name)
+  System.Debug: false
+  target_env: fahrbar-jobs
+
+trigger:
+  branches:
+    exclude:
+    - refs/heads/master
+  paths:
+    include:
+    - iu-publictransport/iu-flatfile-streamer
+
+stages:
+- template: ../../.azure-pipeline-templates/docker_and_helm/azure-pipelines.yml
+  parameters:
+    file_type_to_copy: helm

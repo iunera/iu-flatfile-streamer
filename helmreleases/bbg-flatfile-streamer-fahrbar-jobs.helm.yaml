@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bbg-flatfile-streamer
+  namespace: fahrbar-jobs
+spec:
+  releaseName: bbg-flatfile-streamer
+  targetNamespace: fahrbar-jobs
+  chart:
+    spec:
+      chart: springboot
+      version: ">=2.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: iunera-helm-charts
+        namespace: helmrepos
+  interval: 1m0s
+  install:
+    createNamespace: false
+
+  values:
+    image:
+      repository: iunera/iu-flatfile-streamer
+      tag: docker_image_tag
+      pullPolicy: IfNotPresent
+
+    extraArgs:
+      - --spring.cloud.aws.s3.endpoint=${S3_ENDPOINT}
+      - --spring.cloud.aws.credentials.access-key=${AWS_ACCESS_KEY_ID}
+      - --spring.cloud.aws.credentials.secret-key=${AWS_SECRET_ACCESS_KEY}
+      - --fahrbar.countingdata.filenamepattern=Z*hldaten*.zip
+      - --fahrbar.countingdata.provider=bbg
+      - --fahrbar.countingdata.outputtopic=iu-fahrbar-prod-ingest-mgelectronics-bbg-flatfilecountdata-v1
+      - --spring.kafka.bootstrap-servers=iunerakafkacluster-kafka-brokers.kafka.svc.cluster.local:9092
+
+    env:
+      - name: S3_ENDPOINT
+        valueFrom:
+          secretKeyRef:
+            name: flatfilestreamer-s3-secret
+            key: S3_ENDPOINT
+      - name: AWS_ACCESS_KEY_ID
+        valueFrom:
+          secretKeyRef:
+            name: flatfilestreamer-s3-secret
+            key: AWS_ACCESS_KEY_ID
+      - name: AWS_SECRET_ACCESS_KEY
+        valueFrom:
+          secretKeyRef:
+            name: flatfilestreamer-s3-secret
+            key: AWS_SECRET_ACCESS_KEY

@@ -43,6 +43,7 @@ Subsequently, one can use the Resource Processor as a template to create a confi
 ```
 docker build --no-cache -t iu-flatfile-streamer:local -f iu-occupancy-flatfile-streamer/Dockerfile .
 ```
+
 # License
 
 We choose fair [code, fair work, fair payment, open  collaboration](https://www.license-token.com)
@@ -65,5 +66,5 @@ limitations under the License.
 
 @octl.sid: 1b6f7a5d-8dcf-44f1-b03a-77af04433496
 ```
-* Why did we [choose the OCTL as alternative to the Apache License 2.0](https://www.license-token.com/wiki/unveiling-apache-license-2-0-summary)?
+* Why did we [choose the OCTL as alternative to the GNU Lesser General Public License v3](https://www.license-token.com/wiki/unveiling-gnu-lesser-general-public-license-v3-summary)?
 * Why we [do NOT apply Apache 2.0 License](https://www.license-token.com/wiki/the-downside-of-apache-license-and-why-i-never-would-use-it)?
